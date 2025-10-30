@@ -75,12 +75,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
 
 
 // =========================================================================
-//                            LOGICA HOME.HTML (CON SOTTOTITOLI)
+//                            LOGICA index.html (CON SOTTOTITOLI)
 // =========================================================================
     
 const btnStart = document.getElementById('btn-start');
 
-if (btnStart) { // Se l'elemento 'btn-start' è presente, siamo in home.html
+if (btnStart) { // Se l'elemento 'btn-start' è presente, siamo in index.html
     
     if (typeof HOME_SUBTITLES === 'undefined') {
         console.error("ERRORE: Array HOME_SUBTITLES non trovato. Assicurati che js/sub.js sia incluso.");
