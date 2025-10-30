@@ -1,0 +1,175 @@
+/* ---------------------------------- */
+/* 1. IMPORTAZIONE FONT CUSTOM */
+/* ---------------------------------- */
+@font-face {
+    font-family: 'Tsushima';
+    /* PERCORSO CRUCIALE: style.css si aspetta di trovare 'fonts/Tsushima.otf' */
+    src: url('fonts/Tsushima.otf') format('opentype'); 
+    font-weight: normal;
+    font-style: normal;
+}
+
+/* ---------------------------------- */
+/* 2. PALETTE DI COLORI E UTILITY */
+/* ---------------------------------- */
+/* Definizioni per i colori del gioco */
+.text-gold { color: #F99E14; }
+.bg-gold { background-color: #F99E14; }
+.text-dark { color: #2F2B2C; } /* Colore del testo primario */
+
+/* ---------------------------------- */
+/* 3. STILI BASE E VIDEO OVERLAY */
+/* ---------------------------------- */
+body {
+    background-color: #F5F0E8; /* Sfondo chiaro del gioco */
+    font-family: Arial, sans-serif; 
+    color: #2F2B2C; /* Testo scuro per contrasto */
+    overflow: hidden; 
+}
+
+/* Applica il font custom solo agli elementi specifici, come l'intestazione */
+.font-tsushima {
+    font-family: 'Tsushima', serif; 
+}
+
+/* Contenitore del Video Sfondo */
+#video-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    overflow: hidden;
+}
+
+#video-background video {
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    object-fit: cover;
+    opacity: 0.15;
+}
+
+/* ---------------------------------- */
+/* 4. EFFETTO LIQUID GLASS */
+/* ---------------------------------- */
+.glass-button {
+    /* Base Glassmorphism su sfondo chiaro */
+    backdrop-filter: blur(20px); 
+    -webkit-backdrop-filter: blur(20px);
+    background-color: rgba(245, 240, 232, 0.4); 
+    border: 1px solid rgba(47, 43, 44, 0.1); 
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); 
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); 
+    border-radius: 9999px; /* Tondo! */
+}
+
+.glass-button:hover {
+    background-color: rgba(245, 240, 232, 0.6); 
+    box-shadow: 0 10px 40px 0 rgba(0, 0, 0, 0.45);
+    transform: translateY(-4px); 
+}
+
+/* Stile per il Contenitore Audio Placeholder */
+#audio-placeholder {
+    border-radius: 1.5rem; /* Un po' meno tondo per variare */
+}
+
+/* --- STILI SPECIFICI HAIKU.HTML (Simulazione Rotolo) --- */
+
+/* La Pergamena arrotolata inizialmente */
+#pergamena-box {
+    position: relative;
+    width: 90%; 
+    max-width: 400px;
+    height: 80px; /* Altezza iniziale */
+    margin: 0 auto;
+    z-index: 10;
+    overflow: hidden; 
+    
+    /* Stile della Carta */
+    background-color: #F5F0E8; 
+    border: 2px solid #a87b5a; 
+    border-radius: 15px; 
+    
+    box-shadow: 
+        0 8px 15px rgba(0, 0, 0, 0.4), 
+        inset 0 0 15px rgba(168, 123, 90, 0.5); 
+
+    cursor: grab;
+    touch-action: none;
+    transition: height 1s ease-out; 
+}
+
+/* Contenuto Srotolato (dove c'è l'Haiku) */
+#pergamena-content {
+    padding: 30px 40px; 
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+/* Testo Istruzione (all'interno della pergamena chiusa) */
+#instruction-in-pergamena {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centratura perfetta */
+    width: 90%;
+    text-align: center;
+    padding: 5px;
+    z-index: 40; /* Deve stare sopra l'Haiku ma sotto i rotoli */
+}
+
+
+/* L'Haiku è inizialmente nascosto e centrato */
+#haiku-text {
+    text-align: center;
+    opacity: 0; /* Inizialmente INVISIBILE */
+    color: #3f2f2f; /* Colore del testo (inchiostro) */
+    padding-top: 5px;
+}
+
+/* I bordi laterali (il rotolo) */
+.pergamena-lato {
+    position: absolute;
+    height: 100%;
+    width: 30px; 
+    top: 0;
+    opacity: 1;
+    z-index: 50; /* Deve stare sopra il testo di istruzione */
+    
+    background-color: #a87b5a; 
+    border-radius: 5px;
+    box-shadow: inset 0 0 8px rgba(0, 0, 0, 0.7); 
+    
+    background-image: repeating-linear-gradient(
+        45deg, 
+        rgba(255, 255, 255, 0.1), 
+        rgba(255, 255, 255, 0.1) 1px, 
+        transparent 1px, 
+        transparent 2px
+    );
+}
+
+#lato-sx { 
+    left: 0; 
+    transform-origin: left center;
+}
+#lato-dx { 
+    right: 0; 
+    transform-origin: right center;
+}
+/* --- FINE STILI HAIKU.HTML --- */
+
+/* ========================================================================= */
+/* CLASSI PERSONALIZZATE PER LA PAGINA DI AUGURI (Floating Input) */
+/* ========================================================================= */
