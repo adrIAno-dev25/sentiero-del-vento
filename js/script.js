@@ -10,9 +10,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const finalAudio = document.getElementById('final-audio'); 
     const AMBIENT_VOLUME_NORMAL = 0.5;
     
-    // Variabili Segrete (SIMULAZIONE .env) - !!! CAMBIA QUESTI VALORI !!!
     const CODICE_SEGRETO_CORRETTO = "BERSERK"; 
-    const CODICE_PS_STORE = "ABCD-EFGH-IJKL-MNPQR"; 
+    const CODICE_PS_STORE = "J4AD-3FA2-7BT3"; 
     
     // --- Funzione Helper per volume (Fade in/out) ---
     function setAmbientVolume(targetVolume) {
