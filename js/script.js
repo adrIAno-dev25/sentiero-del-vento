@@ -324,7 +324,8 @@ if (pergamenaBox) {
             if (codiceInserito === CODICE_SEGRETO_CORRETTO.toUpperCase()) { 
                 
                 // *** SUCCESSO: REINDIRIZZA ALLA PAGINA FINALE ***
-                
+                sessionStorage.setItem('accesso-finale', 'true');
+
                 gsap.to(rivelazioneFinale, { 
                     opacity: 0, 
                     y: -50, 
@@ -355,7 +356,20 @@ if (pergamenaBox) {
     const psCodeDisplay = document.getElementById('ps-code');
     
     if (psCodeDisplay) { // Identificatore per auguri.html
+
+        const hasPermission = sessionStorage.getItem('accesso-finale');
         
+        if (!hasPermission) {
+            // Se la chiave non esiste, reindirizza alla home o a una pagina di blocco
+            window.location.href = "index.html"; 
+            return; // Blocca l'esecuzione dello script
+        }
+
+        // --- L'ACCESSO È PERMESSO, CONTINUA CON IL GIOCO ---
+
+        // Pulisci il permesso per un futuro utilizzo
+        sessionStorage.removeItem('accesso-finale');
+
         // Inietta il codice segreto
         psCodeDisplay.textContent = CODICE_PS_STORE;
         
