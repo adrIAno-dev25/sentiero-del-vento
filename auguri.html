@@ -7,6 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="style.css"> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-..." crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body class="flex items-center justify-center min-h-screen p-4">
         <audio id="final-audio" src="media/Ghost-of-Yōtei.mp3" preload="auto" autoplay playsinline></audio>
@@ -28,15 +29,22 @@
                 dentro e fuori dal Sentiero.
             </p>
 
-            <div class="text-center">
+            <div class="mb-2">
                 
                 <p class="text-black text-sm tracking-widest mb-2 font-tsushima">
-                    IL TUO CODICE:
+                    Riscatta il tuo Dono sul PlayStation Store:
                 </p>
-                <p id="ps-code" class="bg-dark/80 text-black text-md font-tsushima p-3 rounded-lg border-2 border-gold shadow-2xl tracking-widest select-text">
-                    [CODICE PS STORE]
-                </p>
-                
+                <div class="flex items-center justify-center p-3 rounded-lg border-2 border-gold shadow-2xl bg-dark/80 max-w-xl mx-auto">
+                    
+                    <code id="ps-code" class="text-xl sm:text-2xl text-red-400 font-code tracking-widest select-text flex-grow pr-2">
+                        </code>
+                    
+                    <button id="btn-copia-codice" aria-label="Copia codice" title="Copia codice"
+                        class="p-2 text-gray-400 hover:text-green-400 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 rounded-full">
+                        <i id="copy-icon" class="fas fa-copy text-xl"></i>
+                    </button>
+                </div>
+                <p id="copy-feedback" class="text-sm text-green-600 mt-2 opacity-0 transition-opacity duration-300 font-bold">Copiato negli appunti!</p>
             </div>
             <p class="mt-4 text-xl text-black font-tsushima">
                 Buon compleanno 🥳😘<br>Con amore ❣️<br> Adri 🐼

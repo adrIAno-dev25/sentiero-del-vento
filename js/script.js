@@ -371,6 +371,39 @@ if (pergamenaBox) {
 
         // Inietta il codice segreto
         psCodeDisplay.textContent = CODICE_PS_STORE;
+
+        // --- LOGICA ICONA COPIA CODICE ---
+        const btnCopiaCodice = document.getElementById('btn-copia-codice');
+        const copyFeedback = document.getElementById('copy-feedback');
+        const copyIcon = document.getElementById('copy-icon'); 
+
+        if (btnCopiaCodice) {
+            btnCopiaCodice.addEventListener('click', () => {
+                const codice = psCodeDisplay.textContent;
+
+                // 1. Copia nell'API degli appunti
+                navigator.clipboard.writeText(codice).then(() => {
+                    
+                    // 2. Feedback visivo: Icona V e testo
+                    copyIcon.classList.remove('fa-copy', 'text-gray-400');
+                    copyIcon.classList.add('fa-check-circle', 'text-green-400'); // Colore verde per successo
+
+                    // Mostra il testo di feedback
+                    gsap.to(copyFeedback, { opacity: 1, duration: 0.3 });
+
+                    // 3. Resetta l'icona e il testo dopo 2 secondi
+                    gsap.timeline({ delay: 2.0 })
+                        .to(copyFeedback, { opacity: 0, duration: 0.5 }, 0)
+                        .call(() => {
+                            copyIcon.classList.remove('fa-check-circle', 'text-green-400');
+                            copyIcon.classList.add('fa-copy', 'text-gray-400'); // Torna all'icona e al colore originale
+                        });
+                }).catch(err => {
+                    console.error('Errore nella copia del codice: ', err);
+                    alert("Impossibile copiare il codice automaticamente. Copialo manualmente.");
+                });
+            });
+        }
         
         // FUNZIONE PER AVVIARE L'AUDIO FINALE
         function startFinalAudio() {
