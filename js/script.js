@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', (event) => {
     const AMBIENT_VOLUME_NORMAL = 0.5;
     
     const CODICE_SEGRETO_CORRETTO = "BERSERK"; 
-    const CODICE_PS_STORE = "J4AD-3FA2-7BT3"; 
+    const CODICE_PS_STORE = "aaaaaaaaaa"; 
     
     // --- Funzione Helper per volume (Fade in/out) ---
     function setAmbientVolume(targetVolume) {
